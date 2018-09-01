@@ -4,9 +4,9 @@ installed Termux-API (from play store)
 
 Started Termux app
   at the prompt, install php: $ pkg install php
-    git clone https://github.com/pulketo/pkContacts.git
-    cd pkContacts
-    chmod +x pcall.phar  
-    ln -s $(pwd)/pcall.phar ~/../usr/bin/pcall
+    git clone https://github.com/pulketo/termux-cute-call
+    cd termux-cute-call
+    chmod +x cc.phar 
+    ln -s $(pwd)/cc.phar ~/../usr/bin/cc
   done...so...
-    pcall john doe -f
+    cc john doe -f
