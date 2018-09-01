@@ -1,0 +1,12 @@
+you should have already do these steps:
+installed Termux (from play store)
+installed Termux-API (from play store)
+
+Started Termux app
+  at the prompt, install php: $ pkg install php
+    git clone https://github.com/pulketo/pkContacts.git
+    cd pkContacts
+    chmod +x pcall.phar  
+    ln -s $(pwd)/pcall.phar ~/../usr/bin/pcall
+  done...so...
+    pcall john doe -f

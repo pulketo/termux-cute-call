@@ -1,0 +1,14 @@
+{
+    "name": "pulketo/termuxcallbyname",
+    "description": "Call your contacts (on termux) searching contact list by name",
+    "type": "project",
+    "require": {
+        "nategood/commando": "^0.3.0"
+    },
+    "authors": [
+        {
+            "name": "pulketo",
+            "email": "pulketo@gmail.com"
+        }
+    ]
+}

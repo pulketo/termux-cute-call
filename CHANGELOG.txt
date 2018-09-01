@@ -1,0 +1,14 @@
+1.02 - 2018-08-30
+
+    - Some funny characters were displaying like \uXXX.
+
+1.01 - 2018-08-30
+
+    - removed -c switch, now call is the default if there is only one match, you can "avoid" calling with -s (Simulate call)
+    - json output is now printed with newlines in between.
+
+1.00 - 2018-08-29
+Added
+
+		- First release
+
