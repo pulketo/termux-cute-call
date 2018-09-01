@@ -60,6 +60,7 @@ function show($arr){
 }
 	$opts->option('h')->aka('help2')->describedAs(HELP)->boolean()->defaultsTo(false);
 	$opts->option('f')->aka('callthefirst')->describedAs('Call the first match')->boolean()->defaultsTo(false);
+	$opts->option('d')->aka('dial')->describedAs('Just dial, do not search')->boolean()->defaultsTo(false);
 	$opts->option('p')->aka('prefix')->describedAs('A dial prefix (optional)')->defaultsTo("");
 	$opts->option('s')->aka('simcall')->describedAs('Simulate call')->boolean()->defaultsTo(false);
 	$opts->option('v')->aka('version')->describedAs('Version 1.02')->boolean()->defaultsTo(false);
@@ -73,6 +74,19 @@ function show($arr){
 		// echo "$i:".$opts[$i].PHP_EOL;
 		$numArgs=$i+1;
 	}
+	if ($opts['dial']){
+		$d="";
+		for($i=0;$i<=$numargs;$i++){
+			$d=$d.$opts[$i]." ";
+		}
+		fwrite(STDERR, "dialing...$d".PHP_EOL);
+		$o["status"]="dial";
+		$o["number"]="$d";
+	  $cmd = "termux-call ".$opts['prefix'].str_replace(" ","", $o['number']);
+		$exe = trim(`$cmd`);
+		exit(0);
+	}
+
 	$f = trim(`termux-contact-list| tr '[:upper:]' '[:lower:]'`);
 	$arrCL = json_decode($f, true);
 	// remove repeats 
