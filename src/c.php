@@ -9,7 +9,7 @@ DEFINE("HELP", "
 			pcall john doe -f
 				will call the (-f)irst john doe on your list
 			pcall john doe 551
-				will show john doe with 551 on the name/number, execute termux-call if there is just one match, or show a list if there is more than one.
+				will show john doe with 551 on the name/number, execute termux-telephony-call if there is just one match, or show a list if there is more than one.
 			pcall john doe -f -p +521
 				will call John Doe but dial a prefix before the number.
 			All human output goes to stderr and json output goes to stdout useful if you want to pipe it to jq to prettyfy or extra processing.
@@ -89,7 +89,7 @@ function show($arr){
 		case "1":
 			$extract = array_pop($o);
 			$extract["prefix"]=(strlen($opts['prefix'])>0)?$opts['prefix']:"";
-			$cmd = "termux-call ".$opts['prefix'].str_replace(" ","", $extract['number']);
+			$cmd = "termux-telephony-call ".$opts['prefix'].str_replace(" ","", $extract['number']);
 			if ((!$opts['simcall'])){
 				if (strlen($opts['prefix'])>0)			
 					fwrite(STDERR, "dialing with prefix: ".$opts['prefix'].PHP_EOL);
@@ -125,7 +125,7 @@ function show($arr){
 				fwrite(STDERR, "calling... {$u['name']} : {$u['number']}".PHP_EOL);
 				$u['status']="calling";
 				$u['otherContacts']=$o;
-				$cmd = "termux-call ".$opts['prefix'].str_replace(" ","", $u['number']);
+				$cmd = "termux-telephony-call ".$opts['prefix'].str_replace(" ","", $u['number']);
 				if ($opts['simcall'])
 					fwrite(STDERR, "simulating: $cmd".PHP_EOL);
 				else{
