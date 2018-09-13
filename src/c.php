@@ -112,9 +112,25 @@ function show($arr){
 				fwrite(STDERR, "No matches, try fewer terms".PHP_EOL);
 				show($u);
 			}else{
+				$num = strtr($opts[0], array("+"=>"", "p"=>"", "w"=>"", "#"=>"", "."=>"", ","=>"", "*"=>"", " "=>""));
+				if (is_numeric($num)){
+					$u['status']="direct-dialing";
+					fwrite(STDERR, "Direct dialing...".PHP_EOL);
+					$u['number'] = $opts['prefix'].$num;
+					$cmd = "termux-telephony-call ".$opts['prefix'].$num;
+					if ($opts['simcall'])
+						fwrite(STDERR, "simulating: $cmd".PHP_EOL);
+					else{
+						fwrite(STDERR, "$cmd".PHP_EOL);
+						$exe = trim(`$cmd`);
+					}	
+					show($u);
+					
+				}else{
 				$u['status']="No matches";
 				fwrite(STDERR, "No matches".PHP_EOL);
 				show($u);
+				}
 			}
 			fwrite(STDERR, PHP_EOL);exit(2);
 			break;
